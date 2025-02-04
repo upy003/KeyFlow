@@ -10,9 +10,8 @@ enum class NoteLevel {
 
 data class Note(
     val name: String,
-    val octave: Int,
-    val accidental: Accidental = Accidental.NATURAL,
-    val position: Float // Position auf dem Notensystem (0 = mittlere Linie)
+    val frequency: Float,
+    val position: Int
 )
 
 // Notendefinitionen
