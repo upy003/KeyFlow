@@ -5,14 +5,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.upylabs.keyflow.data.model.Accidental
 import com.upylabs.keyflow.data.model.Note
+import com.upylabs.keyflow.data.model.Notes
 import com.upylabs.keyflow.data.model.NoteLevel
 import com.upylabs.keyflow.audio.NoteAudioService
+import com.upylabs.keyflow.data.model.Feedback
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.delay
-import com.upylabs.keyflow.data.model.Feedback
 
 data class NoteReadingState(
     val currentNote: Note? = null,
@@ -25,11 +26,6 @@ data class NoteReadingState(
     val isNoteAnimating: Boolean = false
 )
 
-sealed class Feedback {
-    data class Correct(val note: Note) : Feedback()
-    data class Incorrect(val expected: Note, val given: String) : Feedback()
-}
-
 class NoteReadingViewModel(
     application: Application
 ) : AndroidViewModel(application) {
@@ -39,9 +35,9 @@ class NoteReadingViewModel(
     val state: StateFlow<NoteReadingState> = _state.asStateFlow()
 
     private fun getNotesForLevel(level: NoteLevel): List<Note> = when (level) {
-        NoteLevel.BEGINNER -> BEGINNER_NOTES
-        NoteLevel.INTERMEDIATE -> INTERMEDIATE_NOTES
-        NoteLevel.ADVANCED -> ADVANCED_NOTES
+        NoteLevel.BEGINNER -> Notes.BEGINNER_NOTES
+        NoteLevel.INTERMEDIATE -> Notes.INTERMEDIATE_NOTES
+        NoteLevel.ADVANCED -> Notes.ADVANCED_NOTES
     }
 
     fun setLevel(level: NoteLevel) {
@@ -88,9 +84,9 @@ class NoteReadingViewModel(
                 score = _state.value.score + if (isCorrect) 10 else 0,
                 streak = if (isCorrect) _state.value.streak + 1 else 0,
                 feedback = if (isCorrect) {
-                    Feedback.Correct(currentNote)
+                    Feedback.Correct
                 } else {
-                    Feedback.Incorrect(currentNote, answer)
+                    Feedback.Incorrect(currentNote)
                 }
             )
 

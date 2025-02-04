@@ -26,12 +26,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 @Composable
 fun BeginnerModeScreen(
     onBackClick: () -> Unit,
-    onLessonClick: (LessonType) -> Unit,
-    viewModel: BeginnerModeViewModel = viewModel(),
     modifier: Modifier = Modifier
 ) {
-    val state by viewModel.state.collectAsState()
-
     Scaffold(
         topBar = {
             SmallTopAppBar(
@@ -55,7 +51,7 @@ fun BeginnerModeScreen(
             LessonCard(
                 title = "Notenlesen lernen",
                 description = "Lerne die Grundlagen des Notenlesens",
-                onClick = { onLessonClick(LessonType.NOTE_READING) }
+                onClick = { /* TODO */ }
             )
             
             LessonCard(
@@ -82,26 +78,20 @@ private fun LessonCard(
     modifier: Modifier = Modifier
 ) {
     ElevatedCard(
-        onClick = remember(onClick) { onClick },
+        onClick = onClick,
         modifier = modifier.fillMaxWidth()
     ) {
         Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .animateContentSize(),
+            modifier = Modifier.padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Text(
                 text = title,
-                style = MaterialTheme.typography.titleLarge,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                style = MaterialTheme.typography.titleLarge
             )
             Text(
                 text = description,
-                style = MaterialTheme.typography.bodyMedium,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }

@@ -1,6 +1,6 @@
 package com.upylabs.keyflow.data.model
 
-data class Feedback(
-    val isCorrect: Boolean,
-    val message: String
-) 
+sealed interface Feedback {
+    object Correct : Feedback
+    data class Incorrect(val expected: Note) : Feedback
+} 

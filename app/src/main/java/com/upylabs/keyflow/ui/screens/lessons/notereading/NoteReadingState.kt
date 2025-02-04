@@ -4,7 +4,7 @@ import com.upylabs.keyflow.data.model.Feedback
 import com.upylabs.keyflow.data.model.Note
 import com.upylabs.keyflow.data.model.NoteLevel
 
-data class NoteReadingState(
+data class NoteReadingScreenState(
     val currentNote: Note? = null,
     val currentLevel: NoteLevel = NoteLevel.BEGINNER,
     val score: Int = 0,
