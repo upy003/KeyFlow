@@ -2,13 +2,24 @@ package com.upylabs.keyflow.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Hauptfarben - Lebendige, knallige Farben
+val PrimaryPurple = Color(0xFF8A4FFF)  // Helles, lebendiges Violett
+val SecondaryPink = Color(0xFFFF4F8A)  // Knalliges Pink
+val TertiaryBlue = Color(0xFF4FB8FF)   // Helles, lebendiges Blau
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Akzentfarben
+val AccentYellow = Color(0xFFFFD54F)    // Warmes Gelb
+val AccentGreen = Color(0xFF4FFF9F)     // Lebendiges Grün
+val AccentOrange = Color(0xFFFF824F)    // Warmes Orange
+
+// Hintergrundfarben
+val BackgroundGradientStart = Color(0xFFF0E5FF)  // Heller Violett-Ton
+val BackgroundGradientEnd = Color(0xFFFFE5F0)    // Heller Rosa-Ton
+val SurfaceLight = Color(0xFFFFFBFF)    // Fast Weiß mit leichtem Violett-Stich
+
+// Status-Farben
+val SuccessGreen = Color(0xFF00E676)    // Leuchtendes Grün
+val ErrorRed = Color(0xFFFF5252)        // Leuchtendes Rot
 
 val md_theme_light_primary = Color(0xFF006C4C)
 val md_theme_light_onPrimary = Color(0xFFFFFFFF)

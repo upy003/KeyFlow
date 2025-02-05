@@ -1,4 +1,4 @@
-package com.upylabs.keyflow.ui.screens.advanced
+package com.upylabs.keyflow.ui.screens.professional
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
@@ -11,14 +11,14 @@ import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AdvancedModeScreen(
+fun ProfessionalModeScreen(
     onBackClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
         topBar = {
             SmallTopAppBar(
-                title = { Text("Fortgeschrittenen Modus") },
+                title = { Text("Profi Modus") },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Zurück")
@@ -36,20 +36,20 @@ fun AdvancedModeScreen(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             LessonCard(
-                title = "Komplexe Akkordfolgen",
-                description = "Lerne fortgeschrittene Akkordprogressionen",
+                title = "Virtuose Techniken",
+                description = "Meistere anspruchsvolle Spieltechniken",
                 onClick = { /* TODO */ }
             )
             
             LessonCard(
-                title = "Musiktheorie",
-                description = "Vertiefe dein Verständnis der Musiktheorie",
+                title = "Komposition",
+                description = "Entwickle deine eigenen Musikstücke",
                 onClick = { /* TODO */ }
             )
             
             LessonCard(
-                title = "Improvisationstechniken",
-                description = "Entwickle deine eigenen musikalischen Ideen",
+                title = "Konzertrepertoire",
+                description = "Übe klassische und moderne Konzertliteratur",
                 onClick = { /* TODO */ }
             )
         }
