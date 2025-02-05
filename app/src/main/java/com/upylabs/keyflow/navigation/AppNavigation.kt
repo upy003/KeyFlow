@@ -9,51 +9,58 @@ import com.upylabs.keyflow.data.model.SkillLevel
 import com.upylabs.keyflow.ui.screens.advanced.AdvancedModeScreen
 import com.upylabs.keyflow.ui.screens.professional.ProfessionalModeScreen
 import com.upylabs.keyflow.ui.screens.beginner.BeginnerModeScreen
+import com.upylabs.keyflow.ui.screens.lessons.notereading.NoteReadingLessonScreen
 
 @Composable
 fun AppNavigation(
     navController: NavHostController,
-    startDestination: String = "onboarding"
+    startDestination: String = Screen.Onboarding.route
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination
     ) {
-        composable("onboarding") {
+        composable(Screen.Onboarding.route) {
             OnboardingScreen(
                 onComplete = { state ->
-                    // Direkt zum entsprechenden Modus navigieren basierend auf dem Skill Level
                     val destination = when (state.skillLevel) {
-                        SkillLevel.BEGINNER -> "beginner"
-                        SkillLevel.ADVANCED -> "advanced"
-                        SkillLevel.PROFESSIONAL -> "professional"
-                        null -> "beginner" // Fallback
+                        SkillLevel.BEGINNER -> Screen.Beginner.route
+                        SkillLevel.ADVANCED -> Screen.Advanced.route
+                        SkillLevel.PROFESSIONAL -> Screen.Professional.route
+                        null -> Screen.Beginner.route
                     }
-                    // Verhindert, dass der User zurück zum Onboarding navigieren kann
                     navController.navigate(destination) {
-                        popUpTo("onboarding") { inclusive = true }
+                        popUpTo(Screen.Onboarding.route) { inclusive = true }
                     }
                 }
             )
         }
         
-        // Die Modi-Screens
-        composable("beginner") {
+        composable(Screen.Beginner.route) {
             BeginnerModeScreen(
-                onBackClick = { /* Optional: App beenden oder andere Aktion */ }
+                onBackClick = { navController.navigateUp() },
+                onNoteReadingClick = { 
+                    navController.navigate(Screen.NoteReadingLesson.route)
+                }
             )
         }
         
-        composable("advanced") {
+        composable(Screen.Advanced.route) {
             AdvancedModeScreen(
-                onBackClick = { /* Optional: App beenden oder andere Aktion */ }
+                onBackClick = { navController.navigateUp() }
             )
         }
         
-        composable("professional") {
+        composable(Screen.Professional.route) {
             ProfessionalModeScreen(
-                onBackClick = { /* Optional: App beenden oder andere Aktion */ }
+                onBackClick = { navController.navigateUp() }
+            )
+        }
+
+        composable(Screen.NoteReadingLesson.route) {
+            NoteReadingLessonScreen(
+                onBackClick = { navController.navigateUp() }
             )
         }
     }
-} 
+}

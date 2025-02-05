@@ -26,6 +26,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 @Composable
 fun BeginnerModeScreen(
     onBackClick: () -> Unit,
+    onNoteReadingClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Scaffold(
@@ -51,7 +52,7 @@ fun BeginnerModeScreen(
             LessonCard(
                 title = "Notenlesen lernen",
                 description = "Lerne die Grundlagen des Notenlesens",
-                onClick = { /* TODO */ }
+                onClick = onNoteReadingClick
             )
             
             LessonCard(
